@@ -1,0 +1,26 @@
+{
+	"square": {
+		"normal_house": {
+			"name": "normal_house",
+			"condition": [[{"type":""}]],
+			"weight": 1,
+			"path": "res://assets/chunks/normalhouse_square.glb"
+		}
+	},
+	"rectangle": {
+		"restaurant": {
+			"name": "restaurant",
+			"condition": [[{"type":""}]],
+			"weight": 1,
+			"path": "res://assets/chunks/restaurant_rectangle.glb"
+		}
+	},
+	"circle": {
+		"psychic": {
+			"name": "psychic",
+			"condition": [[{"type":""}]],
+			"weight": 1,
+			"path": "res://assets/chunks/psychic_circle.glb"
+		}
+	}
+}

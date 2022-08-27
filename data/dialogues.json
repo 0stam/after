@@ -1,0 +1,30 @@
+{
+	"test_dialogue": {
+		"name": "test_dialogue",
+		"owner": "test_entity",
+		"condition": {"type":""}
+		"dialogue": {
+			"start": {
+				"text": "Hello, I see you are having fun developing this game."
+				"options": [
+					{"text": "Of course", "action": [{"type": "end"}], "condition": [[{"type":""}]]},
+					{"text": "If only I knew how to do it better", "target": "advice", "condition": [[{"type": "equal", "flag": "noob", "val": true}]]},
+					{"text": "Shut up", "target": "challange", "condition": [[{"type": "equal", "flag": "noob", "val": false}]]}
+				]
+			},
+			"advice": {
+				"text": "Find a cheap labour force",
+				"options": [
+					{"text": "Thanks", "action": [{"type": "set", "flag": "noob", "val": false}]},
+					{"text": "That's bullshit", "action": [{"type": "end"}], "condition":[[{"type":""}]]}
+				]
+			},
+			"challange": {
+				"text": "OK",
+				"options": [
+					{"text": "...", "action": [{"type": "end"}], "condition": [[{"type":""}]]}
+				]
+			}
+		}
+	}
+}

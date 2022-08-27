@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://v6xyy2opvocn"]
+
+[ext_resource type="Script" path="res://player_controller/character_test.gd" id="1_duca7"]
+[ext_resource type="PackedScene" uid="uid://ckii1beei2tl7" path="res://player_controller/player.tscn" id="2_hbe0x"]
+[ext_resource type="Script" path="res://player_controller/Label.gd" id="3_ecppg"]
+[ext_resource type="PackedScene" uid="uid://cd65xvsn0tcpv" path="res://chunks_system/chunks.tscn" id="4_c6soq"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qohie"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_g11y0"]
+sky_material = SubResource("ProceduralSkyMaterial_qohie")
+
+[sub_resource type="Environment" id="Environment_yvrhu"]
+background_mode = 2
+sky = SubResource("Sky_g11y0")
+tonemap_mode = 2
+glow_enabled = true
+glow_bloom = 0.1
+fog_light_color = Color(0.737255, 0.682353, 0.713726, 1)
+fog_density = 0.04
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.069
+volumetric_fog_albedo = Color(1, 0.885664, 0.811702, 1)
+volumetric_fog_gi_inject = 0.5
+adjustment_enabled = true
+adjustment_brightness = 0.9
+
+[sub_resource type="LabelSettings" id="LabelSettings_pb851"]
+font_size = 50
+outline_size = 13
+outline_color = Color(0, 0, 0, 1)
+
+[node name="CharacterTest" type="Node3D"]
+script = ExtResource("1_duca7")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yvrhu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0.0976828, 0.34384, 0.933934, -0.490369, 0.833229, -0.255476, 0, 20.7127, 0)
+shadow_enabled = true
+directional_shadow_mode = 0
+directional_shadow_max_distance = 250.0
+
+[node name="Player" parent="." instance=ExtResource("2_hbe0x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.9001, 3.24213, 62.0656)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 249.0
+offset_bottom = 68.0
+text = "Test"
+label_settings = SubResource("LabelSettings_pb851")
+script = ExtResource("3_ecppg")
+
+[node name="Chunks" parent="." instance=ExtResource("4_c6soq")]
