@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://c2ebiwod0es3t"]
+
+[ext_resource type="Script" path="res://entities/enemy_runner/enemy_runner.gd" id="1_747he"]
+[ext_resource type="Script" path="res://entities/enemy_hitbox/enemy_hitbox.gd" id="2_uxpg7"]
+[ext_resource type="Script" path="res://entities/enemy_hurtbox/enemy_hurtbox.gd" id="3_ohx0y"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_w0cw4"]
+radius = 0.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cegdc"]
+albedo_color = Color(0.890196, 0, 0.0117647, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_wum4q"]
+material = SubResource("StandardMaterial3D_cegdc")
+radius = 0.7
+height = 1.4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2t5r7"]
+radius = 0.7
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bvosg"]
+radius = 0.8
+
+[node name="EnemyRunner" type="CharacterBody3D"]
+collision_layer = 8
+collision_mask = 9
+motion_mode = 1
+wall_min_slide_angle = 0.0174533
+script = ExtResource("1_747he")
+
+[node name="EnemyHitbox" type="Area3D" parent="."]
+script = ExtResource("2_uxpg7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyHitbox"]
+shape = SubResource("SphereShape3D_w0cw4")
+
+[node name="Model" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_wum4q")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_2t5r7")
+
+[node name="EnemyHurtbox" type="Area3D" parent="."]
+script = ExtResource("3_ohx0y")
+damage = null
+knockback = null
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyHurtbox"]
+shape = SubResource("SphereShape3D_bvosg")

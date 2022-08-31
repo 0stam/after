@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmxhjpm647ynv"]
+
+[ext_resource type="Script" path="res://entities/enemy_hitbox/enemy_hitbox.gd" id="1_xcsjm"]
+
+[node name="EnemyHitbox" type="Area3D"]
+collision_layer = 32
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_xcsjm")

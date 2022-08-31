@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://dv2s0gtam4r4"]
+
+[ext_resource type="Script" path="res://effects/hit_particles/hit_particles.gd" id="1_wofqo"]
+
+[sub_resource type="ParticlesMaterial" id="ParticlesMaterial_vjvok"]
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 4.0
+initial_velocity_max = 5.0
+linear_accel_min = -0.3
+linear_accel_max = -0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t71ku"]
+albedo_color = Color(0.34902, 0.34902, 0.34902, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_c7yxi"]
+material = SubResource("StandardMaterial3D_t71ku")
+size = Vector2(0.1, 0.1)
+
+[node name="HitParticles" type="GPUParticles3D"]
+emitting = false
+amount = 40
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.56
+visibility_aabb = AABB(-6, -6, -6, 12, 12, 12)
+process_material = SubResource("ParticlesMaterial_vjvok")
+draw_pass_1 = SubResource("QuadMesh_c7yxi")
+script = ExtResource("1_wofqo")

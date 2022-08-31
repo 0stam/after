@@ -1,0 +1,87 @@
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://dpmmwlistto00"]
+
+[ext_resource type="FontFile" uid="uid://dgl6tb3ieadeg" path="res://assets/fonts/Source_Code_Pro/SourceCodePro-SemiBold.ttf" id="1_blk3b"]
+[ext_resource type="FontFile" uid="uid://cxukmlk6rxoxe" path="res://assets/fonts/Source_Code_Pro/SourceCodePro-ExtraBold.ttf" id="1_iu12n"]
+[ext_resource type="FontFile" uid="uid://8fb2vcyo3sx" path="res://assets/fonts/Source_Code_Pro/SourceCodePro-ExtraBoldItalic.ttf" id="2_yxsn0"]
+[ext_resource type="FontFile" uid="uid://br6hht4mk8n4v" path="res://assets/fonts/Source_Code_Pro/SourceCodePro-SemiBoldItalic.ttf" id="3_v4lw5"]
+[ext_resource type="FontFile" uid="uid://tv4gx2gqu4ca" path="res://assets/fonts/Source_Code_Pro/SourceCodePro-ExtraLight.ttf" id="4_2gejp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpx6v"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4wwlm"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1taj4"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.266667, 0.266667, 0.266667, 0.172549)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.937255, 0.937255, 0.937255, 0.666667)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dpeob"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.101961, 0.101961, 0.101961, 0.109804)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8, 0.8, 0.8, 0.313726)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ttd45"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.380392, 0.380392, 0.380392, 0.231373)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.964706)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 5
+
+[resource]
+default_font = ExtResource("1_blk3b")
+default_font_size = 25
+Button/styles/disabled = SubResource("StyleBoxFlat_bpx6v")
+Button/styles/focus = SubResource("StyleBoxFlat_4wwlm")
+Button/styles/hover = SubResource("StyleBoxFlat_1taj4")
+Button/styles/normal = SubResource("StyleBoxFlat_dpeob")
+Button/styles/pressed = SubResource("StyleBoxFlat_ttd45")
+RichTextLabel/fonts/bold_font = ExtResource("1_iu12n")
+RichTextLabel/fonts/bold_italics_font = ExtResource("2_yxsn0")
+RichTextLabel/fonts/italics_font = ExtResource("3_v4lw5")
+RichTextLabel/fonts/mono_font = ExtResource("4_2gejp")
+RichTextLabel/fonts/normal_font = ExtResource("1_blk3b")

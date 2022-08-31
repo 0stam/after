@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dygy6rsq7c24g"]
+
+[ext_resource type="Script" path="res://ui/hp_label/hp_label.gd" id="1_elg1c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_adh2h"]
+font_size = 50
+outline_size = 13
+outline_color = Color(0, 0, 0, 1)
+
+[node name="HPLabel" type="Label"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -72.0
+offset_right = 87.0
+text = "100"
+label_settings = SubResource("LabelSettings_adh2h")
+script = ExtResource("1_elg1c")

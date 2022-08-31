@@ -5,6 +5,12 @@
 			"condition": [[{"type":""}]],
 			"weight": 1,
 			"path": "res://assets/chunks/normalhouse_square.glb"
+		},
+		"military": {
+			"name": "military",
+			"condition": [[{"type":""}]],
+			"weight": 3,
+			"path": "res://assets/chunks/military_square.glb"
 		}
 	},
 	"rectangle": {
@@ -13,6 +19,12 @@
 			"condition": [[{"type":""}]],
 			"weight": 1,
 			"path": "res://assets/chunks/restaurant_rectangle.glb"
+		},
+		"weather_station": {
+			"name": "weather_station",
+			"condition": [[{"type":""}]],
+			"weight": 1,
+			"path": "res://assets/chunks/weatherstation_rectangle.glb"
 		}
 	},
 	"circle": {

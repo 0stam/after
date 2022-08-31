@@ -16,6 +16,7 @@ data = PackedVector3Array(-125, 1, 125, 125, 1, 125, -125, -1, 125, 125, 1, 125,
 [node name="TestChunk" type="Node3D"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 mesh = SubResource("BoxMesh_c087q")

@@ -1,0 +1,33 @@
+{
+	"martin": [
+		{
+			"id": "first_contact",
+			"condition": [[{"type": "equal", "flag": "talked_to_martin", "val": false}]],
+			"weight": 1
+		},
+		{
+			"id": "blame",
+			"condition": [[{"type": "equal", "flag": "talked_to_martin", "val": true}]],
+			"weight": 1
+		}
+	],
+	"mandy": [
+		{
+			"id": "psychic",
+			"condition": [[{}]],
+			"weight": 2
+		},
+		{
+			"id": "crysis",
+			"condition": [[{}]],
+			"weight": 1
+		}
+	],
+	"weatherstation": [
+		{
+			"id": "forecast",
+			"condition": [[{}]],
+			"weight": 1
+		}
+	]
+}

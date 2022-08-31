@@ -1,9 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://v6xyy2opvocn"]
+[gd_scene load_steps=13 format=3 uid="uid://v6xyy2opvocn"]
 
 [ext_resource type="Script" path="res://player_controller/character_test.gd" id="1_duca7"]
+[ext_resource type="PackedScene" uid="uid://buaptoncauhfp" path="res://items/collectible/collectible.tscn" id="2_dw6i7"]
 [ext_resource type="PackedScene" uid="uid://ckii1beei2tl7" path="res://player_controller/player.tscn" id="2_hbe0x"]
-[ext_resource type="Script" path="res://player_controller/Label.gd" id="3_ecppg"]
-[ext_resource type="PackedScene" uid="uid://cd65xvsn0tcpv" path="res://chunks_system/chunks.tscn" id="4_c6soq"]
+[ext_resource type="PackedScene" path="res://ui/fps_label/fps_label.tscn" id="3_mixv0"]
+[ext_resource type="PackedScene" uid="uid://bl7p6oxid6bam" path="res://dialogue/dialogue.tscn" id="4_5h5br"]
+[ext_resource type="PackedScene" uid="uid://dygy6rsq7c24g" path="res://ui/hp_label/hp_label.tscn" id="6_jjeqr"]
+[ext_resource type="PackedScene" uid="uid://dflnrsasi4vod" path="res://assets/chunks/chunktest.glb" id="7_pue35"]
+[ext_resource type="PackedScene" uid="uid://fonmitxw1o27" path="res://assets/chunks/krzesłastoliki.glb" id="8_elcja"]
+[ext_resource type="PackedScene" uid="uid://c2ebiwod0es3t" path="res://entities/enemy_runner/enemy_runner.tscn" id="8_no8j8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qohie"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -27,16 +32,14 @@ volumetric_fog_gi_inject = 0.5
 adjustment_enabled = true
 adjustment_brightness = 0.9
 
-[sub_resource type="LabelSettings" id="LabelSettings_pb851"]
-font_size = 50
-outline_size = 13
-outline_color = Color(0, 0, 0, 1)
-
 [node name="CharacterTest" type="Node3D"]
 script = ExtResource("1_duca7")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yvrhu")
+
+[node name="Collectible" parent="WorldEnvironment" instance=ExtResource("2_dw6i7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.20177, 0.304742, 3.15341)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0.0976828, 0.34384, 0.933934, -0.490369, 0.833229, -0.255476, 0, 20.7127, 0)
@@ -45,15 +48,28 @@ directional_shadow_mode = 0
 directional_shadow_max_distance = 250.0
 
 [node name="Player" parent="." instance=ExtResource("2_hbe0x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.9001, 3.24213, 62.0656)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0508, 0, 3.33439)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_right = 249.0
-offset_bottom = 68.0
-text = "Test"
-label_settings = SubResource("LabelSettings_pb851")
-script = ExtResource("3_ecppg")
+[node name="FPSLabel" parent="CanvasLayer" instance=ExtResource("3_mixv0")]
 
-[node name="Chunks" parent="." instance=ExtResource("4_c6soq")]
+[node name="Dialogue" parent="CanvasLayer" instance=ExtResource("4_5h5br")]
+visible = false
+
+[node name="HPLabel" parent="CanvasLayer" instance=ExtResource("6_jjeqr")]
+
+[node name="chunktest" parent="." instance=ExtResource("7_pue35")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.74692, -0.405725, 0.221553)
+
+[node name="krzesłastoliki" parent="." instance=ExtResource("8_elcja")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0017, -1.6716, -8.23589)
+
+[node name="EnemyRunner" parent="." instance=ExtResource("8_no8j8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3781, 1.90735e-06, -18.9421)
+
+[node name="EnemyRunner2" parent="." instance=ExtResource("8_no8j8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.29078, 0, -13.3577)
+
+[node name="EnemyRunner3" parent="." instance=ExtResource("8_no8j8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6641, 0, 14.5706)

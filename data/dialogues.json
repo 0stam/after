@@ -1,11 +1,9 @@
 {
-	"test_dialogue": {
-		"name": "test_dialogue",
-		"owner": "test_entity",
-		"condition": {"type":""}
+	"test_entity": {
+		"owner_name": "Test entity",
 		"dialogue": {
 			"start": {
-				"text": "Hello, I see you are having fun developing this game."
+				"text": "Hello, I see you are having fun developing this game.",
 				"options": [
 					{"text": "Of course", "action": [{"type": "end"}], "condition": [[{"type":""}]]},
 					{"text": "If only I knew how to do it better", "target": "advice", "condition": [[{"type": "equal", "flag": "noob", "val": true}]]},
@@ -15,14 +13,32 @@
 			"advice": {
 				"text": "Find a cheap labour force",
 				"options": [
-					{"text": "Thanks", "action": [{"type": "set", "flag": "noob", "val": false}]},
+					{"text": "Thanks", "action": [{"type": "set", "flag": "noob", "val": false}], "target": "start", "condition":[[{"type":""}]]},
 					{"text": "That's bullshit", "action": [{"type": "end"}], "condition":[[{"type":""}]]}
 				]
 			},
 			"challange": {
 				"text": "OK",
 				"options": [
-					{"text": "...", "action": [{"type": "end"}], "condition": [[{"type":""}]]}
+					{"text": "Thanks", "action": [{"type": "end"}], "condition": [[{"type":""}]]}
+				]
+			}
+		}
+	},
+	
+	"martin": {
+		"owner_name": "Martin",
+		"dialogue": {
+			"first_contact": {
+				"text": "First contact",
+				"options": [
+					{"text": "Understood", "action": [{"type": "set", "flag": "talked_to_martin", "val": true}, {"type": "end"}], "condition": [[{"type":""}]]}
+				]
+			},
+			"blame": {
+				"text": "Now I blame you",
+				"options": [
+					{"text": "Sad", "action": [{"type": "end"}], "condition": [[{"type":""}]]}
 				]
 			}
 		}

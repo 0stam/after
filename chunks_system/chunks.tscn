@@ -4,3 +4,9 @@
 
 [node name="Chunks" type="Node3D"]
 script = ExtResource("1_1n7c4")
+
+[node name="PlayerPositionCheckTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="PlayerPositionCheckTimer" to="." method="_on_player_position_check_timer_timeout"]

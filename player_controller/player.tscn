@@ -1,13 +1,90 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckii1beei2tl7"]
+[gd_scene load_steps=14 format=3 uid="uid://ckii1beei2tl7"]
 
 [ext_resource type="Script" path="res://player_controller/player.gd" id="1_v8ivs"]
+[ext_resource type="Material" uid="uid://bbwjfl0apyb87" path="res://global/shaders/semi_shaded.tres" id="2_wfy58"]
+[ext_resource type="PackedScene" uid="uid://ccmrt5w1vliq1" path="res://assets/objects/tablet.glb" id="3_gm4pt"]
+[ext_resource type="PackedScene" uid="uid://bdjk0y54klptl" path="res://weapons/miner/miner.tscn" id="4_2sup3"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_8t0ca"]
 height = 1.8
 
+[sub_resource type="BoxMesh" id="BoxMesh_n8bp5"]
+material = ExtResource("2_wfy58")
+size = Vector3(0.4, 0.6, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xq2ua"]
+size = Vector3(0.1, 0.1, 1.5)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cuo2r"]
+radius = 0.6
+
+[sub_resource type="Animation" id="Animation_51itw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Camera3D/Hand/Tablet:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.459, -0.323, 0.323)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Camera3D/Hand/Tablet:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.961676, -0.211185, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0qmno"]
+resource_name = "show_tablet"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Camera3D/Hand/Tablet:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.459, -0.323, 0.323), Vector3(0, 0, 0.579)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Camera3D/Hand/Tablet:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.961676, -0.211185, 0), Vector3(1.5708, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gknmq"]
+_data = {
+"RESET": SubResource("Animation_51itw"),
+"show_tablet": SubResource("Animation_0qmno")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oar00"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wtcf5"]
 
 [node name="Player" type="CharacterBody3D"]
+collision_layer = 20
 script = ExtResource("1_v8ivs")
 
 [node name="CollisionVisualisation" type="MeshInstance3D" parent="."]
@@ -22,5 +99,54 @@ current = true
 fov = 60.0
 far = 150.0
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+[node name="Hand" type="Node3D" parent="Pivot/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.04929)
+
+[node name="Tablet" type="Node3D" parent="Pivot/Camera3D/Hand"]
+transform = Transform3D(0.977783, -0.171919, -0.119933, 0, 0.572146, -0.820152, 0.209619, 0.801931, 0.559435, 0.459, -0.323, 0.323)
+
+[node name="tablet" parent="Pivot/Camera3D/Hand/Tablet" instance=ExtResource("3_gm4pt")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="Tablet" type="MeshInstance3D" parent="Pivot/Camera3D/Hand/Tablet"]
+visible = false
+mesh = SubResource("BoxMesh_n8bp5")
+skeleton = NodePath("../..")
+
+[node name="Miner" parent="Pivot/Camera3D/Hand" instance=ExtResource("4_2sup3")]
+transform = Transform3D(1, -7.45058e-09, 0, 0, 1, -2.98023e-08, 7.45058e-09, 0, 1, -2.98023e-08, -5.96046e-08, 0)
+
+[node name="Gun" type="Node3D" parent="Pivot/Camera3D/Hand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.163, -0.095, 0.824)
+visible = false
+
+[node name="Gun" type="MeshInstance3D" parent="Pivot/Camera3D/Hand/Gun"]
+mesh = SubResource("BoxMesh_xq2ua")
+skeleton = NodePath("../..")
+
+[node name="RayCast3D" type="RayCast3D" parent="Pivot/Camera3D"]
+target_position = Vector3(0, 0, -3)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_cuo2r")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gknmq")
+}
+
+[node name="OutOfCombatTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_oar00")
+disabled = true
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_wtcf5")
+disabled = true
+
+[connection signal="timeout" from="OutOfCombatTimer" to="." method="_on_out_of_combat_timer_timeout"]

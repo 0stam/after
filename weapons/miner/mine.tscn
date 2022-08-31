@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://2mald5j76ds4"]
+
+[ext_resource type="Texture2D" uid="uid://bt7truv5e3qwc" path="res://assets/images/cross.png" id="1_pmxmh"]
+[ext_resource type="Script" path="res://weapons/miner/mine.gd" id="2_opwhp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ua3x3"]
+size = Vector3(0.4, 2.5, 0.4)
+
+[node name="Mine" type="Decal"]
+extents = Vector3(0.5, 0.5, 0.5)
+texture_albedo = ExtResource("1_pmxmh")
+cull_mask = 1048573
+script = ExtResource("2_opwhp")
+
+[node name="HurtBox" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 32
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
+shape = SubResource("BoxShape3D_ua3x3")
+
+[node name="ChargeTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="timeout" from="ChargeTimer" to="." method="_on_charge_timer_timeout"]
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

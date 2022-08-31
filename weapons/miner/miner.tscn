@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdjk0y54klptl"]
+
+[ext_resource type="Script" path="res://weapons/miner/miner.gd" id="1_p4qca"]
+
+[node name="Miner" type="Node3D"]
+script = ExtResource("1_p4qca")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -6)
+
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true

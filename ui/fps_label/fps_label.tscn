@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://ui/fps_label/fps_label.gd" id="1_a3bcg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pb851"]
+font_size = 50
+outline_size = 13
+outline_color = Color(0, 0, 0, 1)
+
+[node name="FPSLabel" type="Label"]
+offset_right = 249.0
+offset_bottom = 68.0
+text = "Test"
+label_settings = SubResource("LabelSettings_pb851")
+script = ExtResource("1_a3bcg")

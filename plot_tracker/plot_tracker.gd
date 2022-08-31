@@ -2,9 +2,9 @@ extends Node
 
 
 var flags: Dictionary = {
-	"test_chunk_enabled": true
+	"test_chunk_enabled": true,
+	"noob": true
 }
-
 
 
 # [[{flag"world_end_reached",type:"equal",val:"true"}, {...}], [...], [...]] means [[cond1 or cond2 or cond3] and [...] and [...]]
