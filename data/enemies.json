@@ -1,0 +1,38 @@
+{
+	"paths": {
+		"runner": "res://entities/enemy_runner/enemy_runner.tscn",
+		"shooter": "res://entities/enemy_shooter/enemy_shooter.tscn"
+	},
+	"options": {
+		"0": {
+			"enemies": ["runner"],
+			"condition": [[{"type":""}]],
+			"weight": 1
+		},
+		"1": {
+			"enemies": ["runner", "runner"],
+			"condition": [[{"type":""}]],
+			"weight": 2
+		},
+		"2": {
+			"enemies": ["runner", "shooter"],
+			"condition": [[{"type":""}]],
+			"weight": 2
+		},
+		"3": {
+			"enemies": ["runner", "runner", "shooter"],
+			"condition": [[{"type":""}]],
+			"weight": 2
+		},
+		"4": {
+			"enemies": ["runner", "runner", "runner"],
+			"condition": [[{"type":""}]],
+			"weight": 1
+		},
+		"5": {
+			"enemies": ["runner", "shooter", "shooter"],
+			"condition": [[{"type":""}]],
+			"weight": 1
+		}
+	}
+}

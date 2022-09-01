@@ -58,3 +58,5 @@ visible = false
 [node name="HPLabel" parent="CanvasLayer" instance=ExtResource("6_jjeqr")]
 
 [node name="Chunks" parent="." instance=ExtResource("7_diq11")]
+
+[node name="Spawns" type="Node3D" parent="."]
