@@ -64,14 +64,14 @@ func set_ui_activated(val: bool) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
-func start_dialogue(owner: String, id: String) -> void:
+func start_dialogue(owner: String) -> void:
 	set_tool(Tool.TABLET)
 	animation_player.play("show_tablet")
 	
 	set_ui_activated(true)
 	
 	await animation_player.animation_finished
-	dialogue_setup_finished.emit(owner, id)
+	dialogue_setup_finished.emit(owner)
 
 
 func end_dialogue() -> void:
@@ -143,6 +143,10 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("use_tool"):
 		if current_tool == Tool.WEAPON:
 			weapon.trigger()
+	
+	elif event.is_action_released("use_tool"):
+		if current_tool == Tool.WEAPON:
+			weapon.release()
 	
 	elif event.is_action_pressed("interact"):
 		var target = ray_cast.get_collider()

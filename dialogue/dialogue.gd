@@ -47,13 +47,14 @@ func display_line(id: String) -> void:
 			await get_tree().create_timer(0.2).timeout
 
 
-func start_dialogue(owner: String, id: String) -> void:
+func start_dialogue(owner: String) -> void:
 	data = dialogue_data[owner]
 	text_node.text = ""
 	text_node.visible_characters = 0
 	
 	show()
-	display_line(id)
+	display_line(PlotTracker.get_option(data["start"]))
+#	display_line(id)
 
 
 func _dialogue_button_action_triggered(actions_array: Array) -> void:

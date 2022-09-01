@@ -34,3 +34,26 @@ func validate_condition(conditions: Array) -> bool:
 				return false
 	
 	return true
+
+
+# Get an id of an option selected from a dictionary
+# First, the function takes only the options with valid conditions
+# Than it picks one at random. Options with higher weight have a higher chance of being picked
+func get_option(dict: Dictionary) -> String:
+	var candidates: Array[Array] = []
+	var total_weight: int = 0
+	
+	# Validate conditions
+	for id in dict:
+		if validate_condition(dict[id]["condition"]):
+			candidates.append([dict[id]["weight"], id])
+			total_weight += dict[id]["weight"]
+	
+	# Choose a random option based on weight
+	var rand: int = randi_range(1, total_weight)
+	for candidate in candidates:
+		rand -= candidate[0]
+		if rand <= 0:
+			return candidate[1]
+	
+	return ""  # If no matching options were found

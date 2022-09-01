@@ -42,27 +42,7 @@ func get_chunk(pos: Vector2i) -> Node3D:
 		return null
 
 
-# Get an id of an option selected from a dictionary
-# First, the function takes only the options with valid conditions
-# Than it picks one at random. Options with higher weight have a higher chance of being picked
-func get_candidate(dict: Dictionary) -> String:
-	var candidates: Array[Array] = []
-	var total_weight: int = 0
-	
-	# Validate conditions
-	for id in dict:
-		if PlotTracker.validate_condition(dict[id]["condition"]):
-			candidates.append([dict[id]["weight"], id])
-			total_weight += dict[id]["weight"]
-	
-	# Choose a random option based on weight
-	var rand: int = randi_range(1, total_weight)
-	for candidate in candidates:
-		rand -= candidate[0]
-		if rand <= 0:
-			return candidate[1]
-	
-	return ""  # If no matching options were found
+
 
 
 # Shared code for creating and setting up a chunk
@@ -87,7 +67,7 @@ func create_chunk(pos: Vector2i) -> void:
 #		type = "hostile"
 	
 	# Create and register a new chunk
-	var id: String = get_candidate(chunk_data[type])
+	var id: String = PlotTracker.get_option(chunk_data[type])
 	var new_chunk: Node3D = create_chunk_from_path(chunk_data[type][id]["path"], pos)
 	map_state[chunk_name] = {"id": id, "type": type, "buildings": {}}
 	
@@ -107,7 +87,7 @@ func create_chunk(pos: Vector2i) -> void:
 		# For each substructure found, choose and create an approperiate building
 		for shape in substructures:
 			for node in substructures[shape]:
-				id = get_candidate(buildings_data[shape])
+				id = PlotTracker.get_option(buildings_data[shape])
 				var new_building: Node3D = load(buildings_data[shape][id]["path"]).instantiate()
 				map_state[chunk_name]["buildings"][node.name] = {"id": id, "shape": shape}
 				node.add_child(new_building)

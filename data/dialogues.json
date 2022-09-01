@@ -1,6 +1,9 @@
 {
 	"test_entity": {
 		"owner_name": "Test entity",
+		"start": {
+			"start": {"weight": 1, "condition": [[{"type": ""}]]}
+		},
 		"dialogue": {
 			"start": {
 				"text": "Hello, I see you are having fun developing this game.",
@@ -28,6 +31,10 @@
 	
 	"martin": {
 		"owner_name": "Martin",
+		"start": {
+			"first_contact": {"condition": [[{"weight": 1, "type": "equal", "flag": "talked_to_martin", "val": false}]]},
+			"blame": {"condition": [[{"weight": 1, "type": "equal", "flag": "talked_to_martin", "val": false}]]}
+		},
 		"dialogue": {
 			"first_contact": {
 				"text": "First contact",
