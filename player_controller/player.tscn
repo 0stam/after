@@ -113,9 +113,6 @@ visible = false
 mesh = SubResource("BoxMesh_n8bp5")
 skeleton = NodePath("../..")
 
-[node name="Miner" parent="Pivot/Camera3D/Hand" instance=ExtResource("4_2sup3")]
-transform = Transform3D(1, -7.45058e-09, 0, 0, 1, -2.98023e-08, 7.45058e-09, 0, 1, -2.98023e-08, -5.96046e-08, 0)
-
 [node name="Gun" type="Node3D" parent="Pivot/Camera3D/Hand"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.163, -0.095, 0.824)
 visible = false
@@ -123,6 +120,9 @@ visible = false
 [node name="Gun" type="MeshInstance3D" parent="Pivot/Camera3D/Hand/Gun"]
 mesh = SubResource("BoxMesh_xq2ua")
 skeleton = NodePath("../..")
+
+[node name="Miner" parent="Pivot/Camera3D/Hand" instance=ExtResource("4_2sup3")]
+transform = Transform3D(1, -7.45058e-09, 0, 0, 1, -2.98023e-08, 7.45058e-09, 0, 1, -2.98023e-08, -5.96046e-08, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="Pivot/Camera3D"]
 target_position = Vector3(0, 0, -3)

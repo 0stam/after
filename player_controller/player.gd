@@ -34,6 +34,7 @@ var out_of_combat: bool = true
 @onready var pivot = $Pivot
 @onready var camera: Camera3D = $Pivot/Camera3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var hand: Node3D = $Pivot/Camera3D/Hand
 @onready var ray_cast: RayCast3D = $Pivot/Camera3D/RayCast3D
 @onready var out_of_combat_timer: Timer = $OutOfCombatTimer
 
@@ -91,6 +92,18 @@ func take_damage(val: float) -> void:
 
 func heal(val: float) -> void:
 	hp = clamp(hp + val, 0, max_hp)
+
+
+func change_weapon(path: String) -> void:
+	weapon.uninitialize()
+	weapon.queue_free()
+	
+	var new_weapon: Weapon = load(path).instantiate()
+	new_weapon.initialize(self)
+	
+	hand.add_child(new_weapon)
+	weapon = new_weapon
+	tools[Tool.WEAPON] = new_weapon
 
 
 func _on_out_of_combat_timer_timeout() -> void:
