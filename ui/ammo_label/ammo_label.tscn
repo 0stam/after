@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkuli8mw03h0i"]
+
+[ext_resource type="Script" path="res://ui/ammo_label/ammo_label.gd" id="1_261lq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5x2od"]
+font_size = 50
+outline_size = 13
+outline_color = Color(0, 0, 0, 1)
+
+[node name="AmmoLabel" type="Label"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -134.0
+offset_right = 219.0
+offset_bottom = -61.6962
+text = "Ammo: 1"
+label_settings = SubResource("LabelSettings_5x2od")
+script = ExtResource("1_261lq")

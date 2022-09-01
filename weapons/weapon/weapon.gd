@@ -2,11 +2,11 @@ extends Node3D
 class_name Weapon
 
 
-var player: Player
+@onready var player: Player = References.player
 
 
 func initialize(p: Player) -> void:
-	player = p
+	pass
 
 
 func uninitialize() -> void:

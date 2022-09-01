@@ -31,6 +31,9 @@ var hp: float = max_hp
 var healing_speed: float = 1
 var out_of_combat: bool = true
 
+# Gun
+var ammo: int = 999
+
 @onready var pivot = $Pivot
 @onready var camera: Camera3D = $Pivot/Camera3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -40,7 +43,7 @@ var out_of_combat: bool = true
 
 @onready var tablet: Node3D = $Pivot/Camera3D/Hand/Tablet
 @onready var weapon: Weapon = $Pivot/Camera3D/Hand/Miner
-@onready var gun: Node3D = $Pivot/Camera3D/Hand/Gun
+@onready var gun: Weapon = $Pivot/Camera3D/Hand/Gun
 @onready var tools: Array = [tablet, weapon, gun]
 
 
@@ -154,8 +157,8 @@ func _input(event: InputEvent) -> void:
 		set_tool(current_tool - 1)
 	
 	elif event.is_action_pressed("use_tool"):
-		if current_tool == Tool.WEAPON:
-			weapon.trigger()
+		if current_tool == Tool.WEAPON or current_tool == Tool.GUN:
+			tools[current_tool].trigger()
 	
 	elif event.is_action_released("use_tool"):
 		if current_tool == Tool.WEAPON:

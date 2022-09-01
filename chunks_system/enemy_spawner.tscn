@@ -7,4 +7,5 @@ radius = 1.0
 
 [node name="EnemySpawner" type="ShapeCast3D"]
 shape = SubResource("SphereShape3D_0y62m")
+target_position = Vector3(0, 0, 0)
 script = ExtResource("1_ghsdu")

@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://ckii1beei2tl7"]
+[gd_scene load_steps=15 format=3 uid="uid://ckii1beei2tl7"]
 
 [ext_resource type="Script" path="res://player_controller/player.gd" id="1_v8ivs"]
 [ext_resource type="Material" uid="uid://bbwjfl0apyb87" path="res://global/shaders/semi_shaded.tres" id="2_wfy58"]
 [ext_resource type="PackedScene" uid="uid://ccmrt5w1vliq1" path="res://assets/objects/tablet.glb" id="3_gm4pt"]
 [ext_resource type="PackedScene" uid="uid://bdjk0y54klptl" path="res://weapons/miner/miner.tscn" id="4_2sup3"]
+[ext_resource type="PackedScene" uid="uid://cdwr5psjixecx" path="res://weapons/gun/gun.tscn" id="4_giyen"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_8t0ca"]
 height = 1.8
@@ -11,9 +12,6 @@ height = 1.8
 [sub_resource type="BoxMesh" id="BoxMesh_n8bp5"]
 material = ExtResource("2_wfy58")
 size = Vector3(0.4, 0.6, 0.1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_xq2ua"]
-size = Vector3(0.1, 0.1, 1.5)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cuo2r"]
 radius = 0.6
@@ -83,6 +81,9 @@ size = Vector3(1, 2, 1)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_wtcf5"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_xq2ua"]
+size = Vector3(0.1, 0.1, 1.5)
+
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 20
 script = ExtResource("1_v8ivs")
@@ -113,13 +114,7 @@ visible = false
 mesh = SubResource("BoxMesh_n8bp5")
 skeleton = NodePath("../..")
 
-[node name="Gun" type="Node3D" parent="Pivot/Camera3D/Hand"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.163, -0.095, 0.824)
-visible = false
-
-[node name="Gun" type="MeshInstance3D" parent="Pivot/Camera3D/Hand/Gun"]
-mesh = SubResource("BoxMesh_xq2ua")
-skeleton = NodePath("../..")
+[node name="Gun" parent="Pivot/Camera3D/Hand" instance=ExtResource("4_giyen")]
 
 [node name="Miner" parent="Pivot/Camera3D/Hand" instance=ExtResource("4_2sup3")]
 transform = Transform3D(1, -7.45058e-09, 0, 0, 1, -2.98023e-08, 7.45058e-09, 0, 1, -2.98023e-08, -5.96046e-08, 0)
@@ -148,5 +143,13 @@ disabled = true
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_wtcf5")
 disabled = true
+
+[node name="Gun" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.163, 0.766378, -0.22529)
+visible = false
+
+[node name="Gun" type="MeshInstance3D" parent="Gun"]
+mesh = SubResource("BoxMesh_xq2ua")
+skeleton = NodePath("../../Pivot/Camera3D/Hand")
 
 [connection signal="timeout" from="OutOfCombatTimer" to="." method="_on_out_of_combat_timer_timeout"]

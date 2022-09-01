@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://v6xyy2opvocn"]
+[gd_scene load_steps=12 format=3 uid="uid://v6xyy2opvocn"]
 
 [ext_resource type="Script" path="res://player_controller/character_test.gd" id="1_duca7"]
 [ext_resource type="PackedScene" uid="uid://buaptoncauhfp" path="res://items/collectible/collectible.tscn" id="2_dw6i7"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bl7p6oxid6bam" path="res://dialogue/dialogue.tscn" id="4_5h5br"]
 [ext_resource type="PackedScene" uid="uid://dygy6rsq7c24g" path="res://ui/hp_label/hp_label.tscn" id="6_jjeqr"]
 [ext_resource type="PackedScene" uid="uid://cd65xvsn0tcpv" path="res://chunks_system/chunks.tscn" id="7_diq11"]
+[ext_resource type="PackedScene" uid="uid://dkuli8mw03h0i" path="res://ui/ammo_label/ammo_label.tscn" id="7_ytwma"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qohie"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -56,6 +57,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.9814, 11.7618, 3.64576)
 visible = false
 
 [node name="HPLabel" parent="CanvasLayer" instance=ExtResource("6_jjeqr")]
+text = "HP: 100"
+
+[node name="AmmoLabel" parent="CanvasLayer" instance=ExtResource("7_ytwma")]
 
 [node name="Chunks" parent="." instance=ExtResource("7_diq11")]
 
