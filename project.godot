@@ -9,6 +9,11 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "Node3D",
+"class": &"Collectible",
+"language": &"GDScript",
+"path": "res://items/collectible/collectible.gd"
+}, {
 "base": "Button",
 "class": &"DialogueButton",
 "language": &"GDScript",
@@ -45,6 +50,7 @@ _global_script_classes=[{
 "path": "res://weapons/weapon/weapon.gd"
 }]
 _global_script_class_icons={
+"Collectible": "",
 "DialogueButton": "",
 "Enemy": "",
 "EnemyHitbox": "",

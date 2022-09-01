@@ -12,10 +12,10 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var jump_velocity: float = 5.2
 
 # Movement modifiers
-var speed_multiplier: float = 1
-var acceleration_multiplier: float = 1
+var speed_multiplier: float = 10
+var acceleration_multiplier: float = 3
 var gravity_multiplier: float = 1
-var jump_velocity_multiplier: float = 1
+var jump_velocity_multiplier: float = 2
 
 # Camera settings
 var mouse_sensitivity: float = 0.003

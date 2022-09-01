@@ -4,7 +4,7 @@ extends Node3D
 var chunks: Dictionary = {}  # Node references: {"x_coorinate,y_coordinate": node_ref}
 
 # Map state stored for save system and chunk loading/unloading
-# {"x,y": {"id":"some_id", "type": "village/hostile", "buildings": {"ChildName": {"id": "some_id", "shape": "some_shape"}, ...}}, ...}
+# {"x,y": {"id":"some_id", "type": "village/hostile", "collectibles": [name1, name2, ...]}, ...}
 # "ChildName" refers to the name of a substructure node the building was attached to 
 var map_state: Dictionary = {}
 
@@ -42,9 +42,6 @@ func get_chunk(pos: Vector2i) -> Node3D:
 		return null
 
 
-
-
-
 # Shared code for creating and setting up a chunk
 func create_chunk_from_path(path: String, pos: Vector2i) -> Node3D:
 	var new_chunk: Node3D = load(path).instantiate()
@@ -63,34 +60,18 @@ func create_chunk(pos: Vector2i) -> void:
 	
 	# Randomize the chunk type
 	var type: String = "village"
-#	if randi() % 2:
-#		type = "hostile"
+	if randi() % 2:
+		type = "hostile"
 	
 	# Create and register a new chunk
 	var id: String = PlotTracker.get_option(chunk_data[type])
 	var new_chunk: Node3D = create_chunk_from_path(chunk_data[type][id]["path"], pos)
-	map_state[chunk_name] = {"id": id, "type": type, "buildings": {}}
+	map_state[chunk_name] = {"id": id, "type": type, "destroyed_coll": []}
 	
-	# If the chunk is a village, create buildings
 	if type == "village":
-		var substructures: Dictionary = {}  # {"shape1": [NodeReference1, ...], "shape2": ...}
-		
-		# Find all substructure meshes
-		for child in new_chunk.get_children():
-			if str(child.name).begins_with("substructure"):
-				var shape: String = str(child.name).split("_")[1]
-				if shape in substructures:
-					substructures[shape].append(child)
-				else:
-					substructures[shape] = [child]
-		
-		# For each substructure found, choose and create an approperiate building
-		for shape in substructures:
-			for node in substructures[shape]:
-				id = PlotTracker.get_option(buildings_data[shape])
-				var new_building: Node3D = load(buildings_data[shape][id]["path"]).instantiate()
-				map_state[chunk_name]["buildings"][node.name] = {"id": id, "shape": shape}
-				node.add_child(new_building)
+		for collectible in new_chunk.get_node("Collectibles").get_children():
+			collectible.chunk_name = chunk_name
+			collectible.destroyed.connect(_collectible_destroyed)
 
 
 # Create a chunk based on a previously saved data
@@ -100,12 +81,12 @@ func load_chunk(pos: Vector2i) -> void:
 	var id: String = map_state[chunk_name]["id"]
 	var new_chunk: Node3D = create_chunk_from_path(chunk_data[type][id]["path"], pos)
 	
-	for substructure in map_state[chunk_name]["buildings"]:
-		type = map_state[chunk_name]["buildings"][substructure]["shape"]
-		id = map_state[chunk_name]["buildings"][substructure]["id"]
-		var new_building: Node3D = load(buildings_data[type][id]["path"]).instantiate()
-		
-		new_chunk.get_node(substructure).add_child(new_building)
+	for collectible_name in map_state[chunk_name]["destroyed_coll"]:
+		new_chunk.get_node("Collectibles/" + collectible_name).queue_free()
+
+
+func _collectible_destroyed(coll_name: String, chunk_name: String) -> void:
+	map_state[chunk_name]["destroyed_coll"].append(coll_name)
 
 
 # Check if generating new chunks is required
@@ -120,7 +101,6 @@ func _on_player_position_check_timer_timeout() -> void:
 func _init() -> void:
 #	seed(13)
 	chunk_data = Utils.parse_json("res://data/chunks.json")
-	buildings_data = Utils.parse_json("res://data/buildings.json")
 
 
 func _ready() -> void:

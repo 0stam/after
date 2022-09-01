@@ -1,24 +1,16 @@
 {
 	"hostile": {
 		"test_chunk": {
-			"name": "test_chunk",
-			"condition": [[{
-					"flag": "test_chunk_enabled",
-					"type": "equal",
-					"val": true
-			}]],
-			"weight": 99999,
+			"condition": [[{"type":""}]],
+			"weight": 1,
 			"path": "res://chunks_system/chunks/test_chunk.tscn"
 		}
 	},
-	
 	"village": {
-		"chunk_base": {
-			"name": "chunk_base",
+		"eva": {
 			"condition": [[{"type":""}]],
-			"type": "village",
 			"weight": 1,
-			"path": "res://assets/chunks/chunk_base_substructures.glb"
+			"path": "res://chunks_system/chunks/eva.tscn"
 		}
 	}
 }
