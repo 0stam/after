@@ -8,3 +8,5 @@ func action() -> void:
 	for action in actions:
 		if action["type"] == "dialogue":
 			References.player.start_dialogue(action["owner"])
+	
+	queue_free()
