@@ -23,10 +23,7 @@ var chunk_size: int:
 @onready var enemy_spawn_timer: Timer = $EnemySpawnTimer
 
 
-# Get a position of the chunk currently occupied by the player
-func get_current_chunk_pos() -> Vector2i:
-	var pos: Vector2i = Vector2i(player.position.x, player.position.z)
-	
+func get_chunk_pos(pos: Vector2) -> Vector2i:
 	# Compensate for the (0, 0) chunk being centered, thus reaching only half of the chunk_size in each direction
 	if pos.x > 0: pos.x += chunk_size / 2
 	else: pos.x -= chunk_size / 2
@@ -34,7 +31,12 @@ func get_current_chunk_pos() -> Vector2i:
 	if pos.y > 0: pos.y += chunk_size / 2
 	else: pos.y -= chunk_size / 2
 	
-	return pos / chunk_size
+	return Vector2i(pos / chunk_size)
+
+
+# Get a position of the chunk currently occupied by the player
+func get_current_chunk_pos() -> Vector2i:
+	return get_chunk_pos(Vector2(player.position.x, player.position.z))
 
 
 func get_chunk_name(pos: Vector2i) -> String:
@@ -93,8 +95,28 @@ func load_chunk(pos: Vector2i) -> void:
 		new_chunk.get_node("Collectibles/" + collectible_name).queue_free()
 
 
+func destroy_chunk(pos: Vector2i) -> void:
+	var chunk_name: String = get_chunk_name(pos)
+	var type: String = map_state[chunk_name]["type"]
+	var id: String = map_state[chunk_name]["id"]
+	
+	if type == "destroyed":
+		return
+	
+	var new_id: String = chunk_data[type][id]["destroyed_id"]
+	var new_path: String = chunk_data["destroyed"][new_id]["path"]
+	map_state[chunk_name] = {"id": new_id, "type": "destroyed", "destroyed_coll": []}
+	
+	chunks[chunk_name].queue_free()
+	create_chunk_from_path(new_path, pos)
+
+
 func _collectible_destroyed(coll_name: String, chunk_name: String) -> void:
 	map_state[chunk_name]["destroyed_coll"].append(coll_name)
+
+
+func _chunk_destroyed(pos: Vector2) -> void:
+	destroy_chunk(get_chunk_pos(pos))
 
 
 # Check if generating new chunks is required
@@ -116,7 +138,7 @@ func _on_enemy_spawn_timer_timeout() -> void:
 
 
 func _init() -> void:
-#	seed(13)
+	seed(13)
 	chunk_data = Utils.parse_json("res://data/chunks.json")
 	enemy_data = Utils.parse_json("res://data/enemies.json")
 	for type in enemy_data["paths"]:
@@ -124,6 +146,8 @@ func _init() -> void:
 
 
 func _ready() -> void:
+	Signals.artillery_hit.connect(_chunk_destroyed)
+	
 	_on_player_position_check_timer_timeout()
 	await get_tree().create_timer(0.1).timeout
 	_on_enemy_spawn_timer_timeout()

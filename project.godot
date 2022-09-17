@@ -10,6 +10,16 @@ config_version=5
 
 _global_script_classes=[{
 "base": "Node3D",
+"class": &"ArtilleryParticles",
+"language": &"GDScript",
+"path": "res://effects/artillery_particles/artillery_particles.gd"
+}, {
+"base": "Position3D",
+"class": &"ArtilleryTarget",
+"language": &"GDScript",
+"path": "res://effects/artillery_target/artillery_target.gd"
+}, {
+"base": "Node3D",
 "class": &"Collectible",
 "language": &"GDScript",
 "path": "res://items/collectible/collectible.gd"
@@ -55,6 +65,8 @@ _global_script_classes=[{
 "path": "res://weapons/weapon/weapon.gd"
 }]
 _global_script_class_icons={
+"ArtilleryParticles": "",
+"ArtilleryTarget": "",
 "Collectible": "",
 "DialogueButton": "",
 "Enemy": "",
@@ -78,6 +90,7 @@ config/icon="res://icon.png"
 PlotTracker="*res://plot_tracker/plot_tracker.gd"
 References="*res://global/scripts/references.gd"
 Settings="*res://global/scripts/settings.gd"
+Signals="*res://global/scripts/signals.gd"
 
 [display]
 

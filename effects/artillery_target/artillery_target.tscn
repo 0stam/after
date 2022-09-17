@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d16dv1nh0khlb"]
+
+[ext_resource type="Script" path="res://effects/artillery_target/artillery_target.gd" id="1_sg7sj"]
+
+[node name="ArtilleryTarget" type="Position3D"]
+script = ExtResource("1_sg7sj")

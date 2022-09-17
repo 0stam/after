@@ -6,13 +6,13 @@ signal dialogue_setup_finished(id: String)
 enum Tool {TABLET, WEAPON, GUN}
 
 # Movement parameters
-var speed: float = 5
+var speed: float = 1
 var acceleration: float = 1
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var jump_velocity: float = 5.2
 
 # Movement modifiers
-var speed_multiplier: float = 1
+var speed_multiplier: float = 5
 var acceleration_multiplier: float = 1
 var gravity_multiplier: float = 1
 var jump_velocity_multiplier: float = 1

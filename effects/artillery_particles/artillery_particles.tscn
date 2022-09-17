@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://dxkx5kjtdqu4a"]
+
+[ext_resource type="Script" path="res://effects/artillery_particles/artillery_particles.gd" id="1_bm44w"]
+
+[sub_resource type="ParticlesMaterial" id="ParticlesMaterial_srpb2"]
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yw3d1"]
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_tbkj1"]
+material = SubResource("StandardMaterial3D_yw3d1")
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="ParticlesMaterial" id="ParticlesMaterial_fklej"]
+emission_shape = 1
+emission_sphere_radius = 6.82
+gravity = Vector3(0, -1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aewlh"]
+albedo_color = Color(0.176471, 0.176471, 0.176471, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_v3avy"]
+material = SubResource("StandardMaterial3D_aewlh")
+size = Vector2(1.5, 1.5)
+
+[node name="ArtilleryParticles" type="Node3D"]
+script = ExtResource("1_bm44w")
+
+[node name="Head" type="GPUParticles3D" parent="."]
+amount = 500
+lifetime = 1.26
+explosiveness = 0.2
+fixed_fps = 15
+local_coords = true
+process_material = SubResource("ParticlesMaterial_srpb2")
+draw_pass_1 = SubResource("QuadMesh_tbkj1")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 0.905882, 0.580392, 1)
+light_energy = 5.0
+light_size = 2.0
+omni_range = 22.802
+
+[node name="Trail" type="GPUParticles3D" parent="."]
+amount = 200
+lifetime = 5.0
+fixed_fps = 15
+visibility_aabb = AABB(-5, -4, -5, 10, 50, 10)
+process_material = SubResource("ParticlesMaterial_fklej")
+draw_pass_1 = SubResource("QuadMesh_v3avy")

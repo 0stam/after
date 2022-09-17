@@ -1,9 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://c3xfe2ihjnaxi"]
+[gd_scene load_steps=5 format=3 uid="uid://c3xfe2ihjnaxi"]
 
 [ext_resource type="PackedScene" uid="uid://cp722t5p8m8vp" path="res://assets/chunks/chunk_eva_weatherstation_commonhouse.glb" id="1_lteso"]
+[ext_resource type="PackedScene" uid="uid://d16dv1nh0khlb" path="res://effects/artillery_target/artillery_target.tscn" id="2_8pb22"]
+[ext_resource type="PackedScene" uid="uid://docn5bllt3chj" path="res://chunks_system/village.tscn" id="3_c62j1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iwv7v"]
+size = Vector3(113.126, 45.858, 137.61)
 
 [node name="EvaWeatherStation" type="Node3D"]
 
 [node name="chunk_eva_weatherstation_commonhouse" parent="." instance=ExtResource("1_lteso")]
 
 [node name="Collectibles" type="Node3D" parent="."]
+
+[node name="ArtilleryTargets" type="Node3D" parent="."]
+
+[node name="ArtilleryTarget" parent="ArtilleryTargets" instance=ExtResource("2_8pb22")]
+
+[node name="Village" parent="." instance=ExtResource("3_c62j1")]
+artillery_targets = [NodePath("../ArtilleryTargets/ArtilleryTarget")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Village"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.99, 0, -15.0823)
+shape = SubResource("BoxShape3D_iwv7v")

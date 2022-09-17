@@ -10,7 +10,13 @@
 		"eva": {
 			"condition": [[{"type":""}]],
 			"weight": 1,
-			"path": "res://chunks_system/chunks/eva.tscn"
+			"path": "res://chunks_system/chunks/eva.tscn",
+			"destroyed_id": "placeholder"
+		}
+	},
+	"destroyed": {
+		"placeholder": {
+			"path": "res://chunks_system/chunks/test_chunk.tscn"
 		}
 	}
 }
