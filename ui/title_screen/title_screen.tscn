@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwp3c44hs7b38"]
+
+[ext_resource type="Script" path="res://ui/title_screen/title_screen.gd" id="1_h15fp"]
+[ext_resource type="Texture2D" uid="uid://bm150l2hayang" path="res://assets/images/main_background.png" id="1_s25b8"]
+[ext_resource type="Texture2D" uid="uid://c0jyd3mlrpkyf" path="res://assets/images/title_text.png" id="2_2hd2p"]
+[ext_resource type="Texture2D" uid="uid://dtrruokbdperc" path="res://assets/images/new_game.png" id="3_jwmpi"]
+[ext_resource type="Texture2D" uid="uid://b8vp87ere5rql" path="res://assets/images/old_game.png" id="4_lyaky"]
+
+[node name="TitleScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_h15fp")
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_s25b8")
+ignore_texture_size = true
+stretch_mode = 6
+metadata/_edit_layout_mode = 1
+
+[node name="Title" type="TextureRect" parent="."]
+anchor_left = 0.1
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.493
+texture = ExtResource("2_2hd2p")
+ignore_texture_size = true
+metadata/_edit_layout_mode = 1
+metadata/_edit_use_custom_anchors = true
+
+[node name="NewGame" type="TextureButton" parent="."]
+anchor_left = 0.05
+anchor_top = 0.828
+anchor_right = 0.4
+anchor_bottom = 0.95
+texture_normal = ExtResource("3_jwmpi")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_layout_mode = 1
+metadata/_edit_use_custom_anchors = true
+
+[node name="LoadGame" type="TextureButton" parent="."]
+modulate = Color(0.827451, 0.827451, 0.827451, 0.729412)
+anchor_left = 0.6
+anchor_top = 0.828
+anchor_right = 0.95
+anchor_bottom = 0.95
+texture_normal = ExtResource("4_lyaky")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_layout_mode = 1
+metadata/_edit_use_custom_anchors = true
+
+[connection signal="pressed" from="NewGame" to="." method="_on_new_game_pressed"]

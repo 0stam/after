@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckkalqkhb44yl"]
+
+[ext_resource type="Theme" uid="uid://c5olqcqe5aio1" path="res://ui/pause_screen/pause_theme.tres" id="1_bmtgw"]
+[ext_resource type="FontFile" uid="uid://daeahjk64rcc7" path="res://assets/fonts/Source_Code_Pro/SourceCodePro-Black.ttf" id="1_f7s20"]
+[ext_resource type="Script" path="res://ui/pause_screen/pause.gd" id="2_tcvuf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_48mrp"]
+font = ExtResource("1_f7s20")
+font_size = 200
+
+[node name="Pause" type="Control"]
+process_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("1_bmtgw")
+script = ExtResource("2_tcvuf")
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.219608, 0.219608, 0.219608, 0.745098)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(1300, 0)
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -660.0
+offset_top = -339.0
+offset_right = 660.0
+offset_bottom = 339.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+offset_right = 1320.0
+offset_bottom = 255.0
+text = "GAME PAUSED"
+label_settings = SubResource("LabelSettings_48mrp")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+offset_left = 207.0
+offset_top = 263.0
+offset_right = 1113.0
+offset_bottom = 678.0
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="Resume" type="Button" parent="VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+offset_right = 906.0
+offset_bottom = 133.0
+text = "RESUME"
+
+[node name="Settings" type="Button" parent="VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+offset_top = 141.0
+offset_right = 906.0
+offset_bottom = 274.0
+text = "SETTINGS"
+
+[node name="Exit" type="Button" parent="VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+offset_top = 282.0
+offset_right = 906.0
+offset_bottom = 415.0
+text = " SAVE AND EXIT "
+
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

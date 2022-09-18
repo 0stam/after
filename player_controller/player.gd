@@ -89,8 +89,7 @@ func take_damage(val: float) -> void:
 	out_of_combat_timer.start()
 	
 	if hp <= 0:
-		get_tree().paused = true
-		# TODO: add death handling
+		get_tree().change_scene("res://ui/title_screen/title_screen.tscn")
 
 
 func heal(val: float) -> void:
